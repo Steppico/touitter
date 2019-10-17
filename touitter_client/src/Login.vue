@@ -7,7 +7,7 @@
         <h3>Login</h3>
         <input type="text" name="email" v-model="input.email" placeholder="email" />
         <input type="password" name="password" v-model="input.password" />
-        <button type="button" v-on:click="login">Login</button>
+        <button type="button" v-on:click="login()">Login</button>
         <a>Not a member?</a>
         <a class="signup_click" v-on:click="goToSignUp" v-on="hover">Sign up</a>
       </div>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from "axios";
+// import axios from "axios";
 import Signup from "./components/Signup";
 
 export default {
@@ -40,8 +40,25 @@ export default {
     Signup
   },
   methods: {
-    login: function() {
-      this.count++;
+    async login() {
+      // try {
+      //   await axios({
+      //     method: "post",
+      //     url: "http://localhost:3000/graphql",
+      //     data: {
+      //       query: `{
+      //         userLogin(email:"admin") {
+      //           email
+      //         }
+      //       }`
+      //     },
+      //     headers: {
+      //       "Access-Control-Allow-Origin": "http://localhost:3000"
+      //     }
+      //   }).then(result => alert(`miamamma, ${result}`));
+      // } catch (error) {
+      //   alert(`Errore! ${error}`);
+      // }
     },
     goToSignUp: function() {
       this.signup = !this.signup;
