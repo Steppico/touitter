@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h3>Login</h3>
+    <h3 class="login-title">login</h3>
     <input type="text" name="email" v-model="input.email" placeholder="email" />
     <input type="password" name="password" v-model="input.password" />
     <button type="button" v-on:click="login()">Login</button>
-    <a>Not a member?</a>
-    <a class="signup_click" v-on:click="goToSignUp">Sign up</a>
+    <div class="not-a-member">
+      <a>Not a member?</a>
+      <a class="signup_click" v-on:click="goToSignUp">Sign up</a>
+    </div>
   </div>
 </template>
 <script>
@@ -57,5 +59,24 @@ export default {
 .signup_click:hover {
   cursor: pointer;
   color: blue;
+}
+.login-title {
+  color: rgb(0, 170, 239);
+  text-shadow: -0.6px 0 black, 0 0.6px black, 0 -0.6px black, 0.6px 0 black;
+  font-size: 24px;
+}
+
+.not-a-member {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+input {
+  margin: 5px;
+}
+
+button {
+  margin: 0 auto;
+  display: inline-block;
 }
 </style>

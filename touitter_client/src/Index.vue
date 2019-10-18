@@ -3,7 +3,7 @@
   <span v-if="!loggedin">
     <div id="login">
       <body>
-        <h1>tOUItter</h1>
+        <h1 v-on:click="goToSignUp">tOUItter</h1>
         <span v-if="signup">
           <div class="login_panel">
             <Login v-bind:goToSignUp="goToSignUp" v-bind:loggingIn="loggingIn" />
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       signup: true,
-      loggedin: true
+      loggedin: false
     };
   },
 
@@ -49,10 +49,13 @@ export default {
   }
 };
 </script>
-
 <style>
 body {
+  text-align: center;
+  display: inline-block;
+  margin: 0px;
   width: 100%;
+  height: 100vh;
 }
 
 #login {
@@ -60,20 +63,17 @@ body {
 }
 
 .login_panel {
+  background-color: white;
   border: 1px solid black;
-  width: 400px;
-  text-align: center;
+  border-radius: 30px;
   display: inline-block;
+  padding-bottom: 5px;
+  text-align: center;
+  width: 400px;
 }
 
 h1 {
-  color: rgb(0, 100, 200);
-}
-</style>
-<style>
-body {
-  text-align: center;
-  display: inline-block;
-  margin: 0px;
+  color: rgb(0, 170, 239);
+  font-size: 50px;
 }
 </style>

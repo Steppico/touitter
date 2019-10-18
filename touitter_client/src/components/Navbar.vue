@@ -1,18 +1,14 @@
 <template>
   <div class="Navbar">
     <h2>Feed(navbar)</h2>
-    <UserProfile class="UserProfile" />
+    <a class="UserProfile" v-on:click="changeView()">User Profile</a>
   </div>
 </template>
 <script>
-import UserProfile from "./UserProfile";
-
 export default {
   name: "navbar",
   data() {},
-  components: {
-    UserProfile
-  }
+  props: ["changeView"]
 };
 </script>
 <style scoped>
@@ -23,5 +19,9 @@ export default {
 
 .UserProfile {
   margin-left: 75%;
+}
+
+.UserProfile:hover {
+  cursor: pointer;
 }
 </style>

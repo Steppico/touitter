@@ -74,13 +74,16 @@ a {
 }
 
 input {
-  padding: 14px 20px;
-  font-size: 18px;
+  border: 0.6px solid lightgrey;
+  padding: 10px 20px;
+  font-size: 14px;
   margin-bottom: 14px;
 }
 
 .signup_box {
-  display: flex;
+  width: 200px;
+  display: table-cell;
+  vertical-align: middle;
   align-items: center;
 }
 </style>
