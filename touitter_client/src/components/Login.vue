@@ -23,7 +23,7 @@ export default {
       }
     };
   },
-  props: ["goToSignUp", "loggingIn"],
+  props: ["goToSignUp", "loggingIn", "updateLoginData"],
   methods: {
     login() {
       if (this.input.email.length <= 0 || this.input.password.length <= 0) {
@@ -41,6 +41,9 @@ export default {
             .then(result => {
               if (result.data.signInUser !== null) {
                 alert("welcome!");
+                const user = result.data.signInUser.user.username;
+                const id = result.data.signInUser.user.id;
+                this.updateLoginData(id, user, "BIO");
                 this.loggingIn();
               } else {
                 alert("login failed");

@@ -1,14 +1,21 @@
 <template>
   <div class="Navbar">
     <h2>Feed(navbar)</h2>
-    <a class="UserProfile" v-on:click="changeView()">User Profile</a>
+    <span v-if="currentView!=='user_profile'">
+      <a class="UserProfile" v-on:click="changeView()">My Profile</a>
+    </span>
+    <span v-if="currentView==='user_profile'">
+      <a class="UserProfile" v-on:click="changeView()">Feed</a>
+    </span>
   </div>
 </template>
 <script>
 export default {
   name: "navbar",
-  data() {},
-  props: ["changeView"]
+  data() {
+    return {};
+  },
+  props: ["changeView", "currentView"]
 };
 </script>
 <style scoped>

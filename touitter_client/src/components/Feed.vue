@@ -1,11 +1,11 @@
 <template>
   <div class="feed">
-    <Navbar v-bind:changeView="changeView" />
+    <Navbar v-bind:changeView="changeView" v-bind:currentView="currentView" />
     <span v-if="currentView==='feed'">
       <MainBoard />
     </span>
     <span v-if="currentView==='user_profile'">
-      <UserProfile />
+      <UserProfile v-bind:loginData="this.loginData" />
     </span>
   </div>
 </template>
@@ -26,6 +26,7 @@ export default {
     MainBoard,
     UserProfile
   },
+  props: ["loginData"],
   methods: {
     changeView: function() {
       this.currentView === "feed"

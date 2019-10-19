@@ -6,7 +6,11 @@
         <h1 v-on:click="goToSignUp">tOUItter</h1>
         <span v-if="signup">
           <div class="login_panel">
-            <Login v-bind:goToSignUp="goToSignUp" v-bind:loggingIn="loggingIn" />
+            <Login
+              v-bind:goToSignUp="goToSignUp"
+              v-bind:loggingIn="loggingIn"
+              v-bind:updateLoginData="updateLoginData"
+            />
           </div>
         </span>
         <span v-if="!signup">
@@ -15,7 +19,7 @@
       </body>
     </div>
   </span>
-  <Feed v-if="loggedin" />
+  <Feed v-if="loggedin" v-bind:loginData="this.loginData" />
 </div>
 </template>
 
@@ -30,7 +34,12 @@ export default {
   data() {
     return {
       signup: true,
-      loggedin: false
+      loggedin: false,
+      loginData: {
+        id: "",
+        username: "",
+        bio: ""
+      }
     };
   },
 
@@ -45,6 +54,11 @@ export default {
     },
     loggingIn: function() {
       this.loggedin = true;
+    },
+    updateLoginData(id, username, bio) {
+      this.loginData.id = id;
+      this.loginData.username = username;
+      this.loginData.bio = bio;
     }
   }
 };
