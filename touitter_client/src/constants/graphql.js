@@ -13,8 +13,16 @@ export const SIGNIN_USER = gql`
   }
 `;
 
+export const UPDATE_PASSWORD = gql`
+  mutation PasswordMutation($id: ID!, $password: String!) {
+    updatePassword(id: $id, password: $password) {
+      password
+    }
+  }
+`;
+
 export const UPDATE_USERNAME = gql`
-  mutation UsernameMutation($id: Integer!, $username: String!) {
+  mutation UsernameMutation($id: ID!, $username: String!) {
     updateUsername(id: $id, username: $username) {
       username
     }
