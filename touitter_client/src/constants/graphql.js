@@ -5,9 +5,18 @@ export const SIGNIN_USER = gql`
     signInUser(email: { email: $email, password: $password }) {
       token
       user {
+        id
         username
         email
       }
+    }
+  }
+`;
+
+export const UPDATE_USERNAME = gql`
+  mutation UsernameMutation($id: Integer!, $username: String!) {
+    updateUsername(id: $id, username: $username) {
+      username
     }
   }
 `;
