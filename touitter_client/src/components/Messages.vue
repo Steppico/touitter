@@ -6,7 +6,9 @@
 <script>
 export default {
   name: "messages",
-  data() {},
+  data() {
+    return {};
+  },
   components: {}
 };
 </script>
@@ -14,6 +16,7 @@ export default {
 .messages {
   margin: 0 auto;
   border: 1px solid lightgrey;
+  border-radius: 3px;
   width: 100%;
 }
 </style>

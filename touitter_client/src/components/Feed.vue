@@ -5,7 +5,7 @@
       <MainBoard />
     </span>
     <span v-if="currentView==='user_profile'">
-      <UserProfile v-bind:loginData="this.loginData" />
+      <UserProfile v-bind:loginData="this.loginData" v-bind:updateLoginData="updateLoginData" />
     </span>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
     MainBoard,
     UserProfile
   },
-  props: ["loginData"],
+  props: ["loginData", "updateLoginData"],
   methods: {
     changeView: function() {
       this.currentView === "feed"

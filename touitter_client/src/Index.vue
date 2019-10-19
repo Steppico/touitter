@@ -19,7 +19,7 @@
       </body>
     </div>
   </span>
-  <Feed v-if="loggedin" v-bind:loginData="this.loginData" />
+  <Feed v-if="loggedin" v-bind:loginData="this.loginData" v-bind:updateLoginData="updateLoginData" />
 </div>
 </template>
 

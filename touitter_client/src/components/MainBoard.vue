@@ -11,7 +11,9 @@ import Messages from "./Messages";
 
 export default {
   name: "mainboard",
-  data() {},
+  data() {
+    return {};
+  },
   components: {
     UserPost,
     Messages

@@ -1,13 +1,15 @@
 <template>
   <div class="UserPost">
-    <input class="user-input" type="text" placeholder="What are you thinking?" />
+    <input class="user-input" type="text" placeholder="What are you thinking?" maxlength="140" />
     <button class="user-input-button" type="button">Share</button>
   </div>
 </template>
 <script>
 export default {
   name: "userpost",
-  data() {},
+  data() {
+    return {};
+  },
   components: {}
 };
 </script>
@@ -18,6 +20,7 @@ export default {
   width: 30%;
   height: 60px;
 }
+
 .user-input-button {
   border: none;
   height: 60px;
