@@ -40,11 +40,16 @@ export default {
             })
             .then(result => {
               if (result.data.signInUser !== null) {
-                alert("welcome!");
-                const user = result.data.signInUser.user.username;
-                const id = result.data.signInUser.user.id;
-                this.updateLoginData(id, user, "BIO");
-                this.loggingIn();
+                if (result.data.signInUser.user.emailConfirmed === true) {
+                  alert("welcome!");
+                  const user = result.data.signInUser.user.username;
+                  const id = result.data.signInUser.user.id;
+                  const bio = result.data.signInUser.user.bio;
+                  this.updateLoginData(id, user, bio);
+                  this.loggingIn();
+                } else {
+                  alert("Please confirm your email first");
+                }
               } else {
                 alert("login failed");
                 this.input.password = "";

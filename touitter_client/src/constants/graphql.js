@@ -8,6 +8,8 @@ export const SIGNIN_USER = gql`
         id
         username
         email
+        emailConfirmed
+        bio
       }
     }
   }
@@ -17,6 +19,31 @@ export const UPDATE_PASSWORD = gql`
   mutation PasswordMutation($id: ID!, $password: String!) {
     updatePassword(id: $id, password: $password) {
       password
+    }
+  }
+`;
+
+export const UPDATE_BIO = gql`
+  mutation BioMutation($id: ID!, $bio: String!) {
+    updatePassword(id: $id, bio: $bio) {
+      bio
+    }
+  }
+`;
+
+export const CONFIRM_EMAIL = gql`
+  mutation ConfirmEmail($id: ID!) {
+    updateConfirmEmail(id: $id) {
+      id
+      emailConfirmed
+    }
+  }
+`;
+
+export const CHECK_TOKEN = gql`
+  query CheckToken($token: String!) {
+    checkToken(token: $token) {
+      id
     }
   }
 `;
