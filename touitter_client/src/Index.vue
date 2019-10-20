@@ -1,5 +1,6 @@
 <template>
 <div>
+  <router-view></router-view>
   <span v-if="!loggedin">
     <div id="login">
       <body>
