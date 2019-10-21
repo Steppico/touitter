@@ -15,6 +15,41 @@ export const SIGNIN_USER = gql`
   }
 `;
 
+export const FOLLOW_USER = gql`
+  mutation FollowUser($userId: ID!, $followerId: Int!) {
+    createFollower(userId: $userId, followerId: $followerId) {
+      id
+      userId {
+        username
+      }
+      followerId
+    }
+  }
+`;
+export const UNFOLLOW_USER = gql`
+  mutation UnfollowUser($userId: ID!, $followerId: Int!) {
+    deleteFollower(userId: $userId, followerId: $followerId) {
+      id
+      userId {
+        username
+      }
+      followerId
+    }
+  }
+`;
+
+export const GET_USER_FOLLOWERS = gql`
+  query GetUserFollowers($userId: ID!) {
+    followerByUserId(userId: $userId) {
+      id
+      followerId
+      userId {
+        id
+      }
+    }
+  }
+`;
+
 export const GET_USER_MESSAGES = gql`
   query GetUserMessages($id: ID!) {
     allUserMessages(id: $id) {

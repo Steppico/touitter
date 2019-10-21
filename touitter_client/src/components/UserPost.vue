@@ -7,7 +7,9 @@
       maxlength="140"
       v-model="input.text"
     />
-    <button class="user-input-button" type="button" v-on:click="sharePost">Share</button>
+    <div>
+      <button class="user-input-button" type="button" v-on:click="sharePost">Share</button>
+    </div>
   </div>
 </template>
 <script>
@@ -24,15 +26,15 @@ export default {
   props: ["loginData"],
   methods: {
     sharePost: function() {
-      this.$apollo
-        .mutate({
-          mutation: SHARE_POST,
-          variables: {
-            id: this.loginData.id,
-            message: this.input.text
-          }
-        })
-        .then(result => alert(JSON.stringify(result)));
+      if (this.input.text.length <= 0) return alert("Write something");
+      this.$apollo.mutate({
+        mutation: SHARE_POST,
+        variables: {
+          id: this.loginData.id,
+          message: this.input.text
+        }
+      });
+      this.input.text = "";
     }
   }
 };
@@ -49,7 +51,8 @@ export default {
 
 .user-input-button {
   border: none;
-  height: 60px;
+  width: 30.5%;
+  height: 25px;
 }
 .UserPost {
   margin-top: 20px;

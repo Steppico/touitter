@@ -1,19 +1,17 @@
 <template>
-  <div>
-    <div class="user_info">
-      <h1>{{username}}</h1>
-      <p>{{bio}}</p>
-    </div>
+  <div class="otherUser">
+    <h1 class="user_name">{{username}}</h1>
+    <img class="user_avatar" v-on:click="goToUser(message.postedBy)" src="../assets/avatar.jpg" />
+    <p>What {{username}} says about himself:</p>
+    <div class="user_bio">{{bio}}</div>
+    <p>Most recent messages:</p>
     <div class="user_messages">
       <div v-for="message in messages.slice().reverse()" v-bind:key="message.id">
-        <div class="board_message">
-          <div class="board_message_author">{{message.postedBy.username}}</div>
-          <div class="board_message_text">{{message.message}}</div>
-          <img
-            class="board_message_avatar"
-            v-on:click="goToUser(message.postedBy)"
-            src="../assets/avatar.jpg"
-          />
+        <div class="card">
+          <div class="board_message">
+            <div class="board_message_author">{{message.postedBy.username}}</div>
+            <div class="board_message_text">{{message.message}}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,5 +51,37 @@ export default {
   }
 };
 </script>
-<style scoped>
+<style >
+.card {
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.user_name {
+  margin: 0 auto;
+}
+
+.user_avatar {
+  border-radius: 50%;
+  width: 100px;
+  border: 1px solid lightslategray;
+}
+
+.user_messages {
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  width: 50%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.user_bio {
+  border: 1px solid lightgrey;
+  margin: 0 auto;
+  width: 300px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
 </style>

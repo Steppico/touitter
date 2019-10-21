@@ -2,8 +2,10 @@
   <div class="feed">
     <Navbar v-bind:changeView="changeView" v-bind:currentView="currentView" />
     <OtherUser v-if="currentView==='otherUser'" v-bind:otherUser="otherUser" />
+    <!-- <MyFollowed v-if="currentView==='followers'" v-bind:loginData="this.loginData" /> -->
     <MainBoard
       v-if="currentView==='feed'"
+      v-bind:updateFollowers="this.updateFollowers"
       v-bind:loginData="this.loginData"
       v-bind:changeView="changeView"
       v-bind:goToUser="goToUser"
@@ -20,13 +22,15 @@ import Navbar from "./Navbar";
 import MainBoard from "./MainBoard";
 import UserProfile from "./UserProfile";
 import OtherUser from "./OtherUser";
+// import MyFollowed from "./MyFollowed";
 
 export default {
   name: "feed",
   data() {
     return {
       currentView: "feed",
-      otherUser: null
+      otherUser: null,
+      followers: null
     };
   },
   components: {
@@ -34,9 +38,14 @@ export default {
     MainBoard,
     UserProfile,
     OtherUser
+    // MyFollowed
   },
   props: ["loginData", "updateLoginData"],
   methods: {
+    updateFollowers: function(followers) {
+      this.followers = followers;
+    },
+
     goToUser: function(other) {
       this.otherUser = other;
       this.changeView("otherUser");

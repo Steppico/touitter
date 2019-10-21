@@ -18,13 +18,11 @@
       </body>
     </div>
   </span>
-  <!-- </span> -->
   <Feed v-if="loggedin" v-bind:loginData="this.loginData" v-bind:updateLoginData="updateLoginData" />
 </div>
 </template>
 
 <script>
-// import axios from "axios";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Feed from "./components/Feed";
