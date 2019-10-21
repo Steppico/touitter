@@ -15,6 +15,39 @@ export const SIGNIN_USER = gql`
   }
 `;
 
+export const GET_USER_MESSAGES = gql`
+  query GetUserMessages($id: ID!) {
+    allUserMessages(id: $id) {
+      id
+      message
+      postedBy {
+        id
+      }
+    }
+  }
+`;
+
+export const GET_ALL_MESSAGES = gql`
+  query GetAllMessages {
+    allMessages {
+      id
+      message
+      postedBy {
+        id
+        username
+        bio
+      }
+    }
+  }
+`;
+export const CHECK_TOKEN = gql`
+  query CheckToken($token: String!) {
+    checkToken(token: $token) {
+      id
+    }
+  }
+`;
+
 export const UPDATE_PASSWORD = gql`
   mutation PasswordMutation($id: ID!, $password: String!) {
     updatePassword(id: $id, password: $password) {
@@ -23,9 +56,17 @@ export const UPDATE_PASSWORD = gql`
   }
 `;
 
+export const SHARE_POST = gql`
+  mutation SharePost($id: ID!, $message: String!) {
+    createMessage(userId: $id, message: $message) {
+      message
+    }
+  }
+`;
+
 export const UPDATE_BIO = gql`
   mutation BioMutation($id: ID!, $bio: String!) {
-    updatePassword(id: $id, bio: $bio) {
+    updateBio(id: $id, bio: $bio) {
       bio
     }
   }
@@ -36,14 +77,6 @@ export const CONFIRM_EMAIL = gql`
     updateConfirmEmail(id: $id) {
       id
       emailConfirmed
-    }
-  }
-`;
-
-export const CHECK_TOKEN = gql`
-  query CheckToken($token: String!) {
-    checkToken(token: $token) {
-      id
     }
   }
 `;

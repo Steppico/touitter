@@ -1,29 +1,24 @@
 <template>
 <div>
-  <span v-if="this.$route.query.token">
-    <router-view />
-  </span>
+  <router-view v-if="this.$route.query.token" />
   <span v-if="!this.$route.query.token">
-    <span v-if="!loggedin">
-      <div id="login">
-        <body>
-          <h1 v-on:click="goToSignUp">tOUItter</h1>
-          <span v-if="signup">
-            <div class="login_panel">
-              <Login
-                v-bind:goToSignUp="goToSignUp"
-                v-bind:loggingIn="loggingIn"
-                v-bind:updateLoginData="updateLoginData"
-              />
-            </div>
-          </span>
-          <span v-if="!signup">
-            <Signup v-bind:goToSignUp="goToSignUp" />
-          </span>
-        </body>
-      </div>
-    </span>
+    <div v-if="!loggedin" id="login">
+      <body>
+        <h1 v-on:click="goToSignUp">tOUItter</h1>
+        <div v-if="signup" class="login_panel">
+          <Login
+            v-bind:goToSignUp="goToSignUp"
+            v-bind:loggingIn="loggingIn"
+            v-bind:updateLoginData="updateLoginData"
+          />
+        </div>
+        <span v-if="!signup">
+          <Signup v-bind:goToSignUp="goToSignUp" />
+        </span>
+      </body>
+    </div>
   </span>
+  <!-- </span> -->
   <Feed v-if="loggedin" v-bind:loginData="this.loginData" v-bind:updateLoginData="updateLoginData" />
 </div>
 </template>
@@ -43,7 +38,8 @@ export default {
       loginData: {
         id: "",
         username: "",
-        bio: ""
+        bio: "",
+        followers: []
       }
     };
   },

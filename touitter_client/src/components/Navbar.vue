@@ -1,11 +1,11 @@
 <template>
-  <div class="Navbar">
-    <h2>Feed(navbar)</h2>
+  <div class="navbar">
+    <h2 class="touitter_title" v-on:click="changeView('feed')">tOUItter</h2>
     <span v-if="currentView!=='user_profile'">
-      <a class="UserProfile" v-on:click="changeView()">My Profile</a>
+      <a class="user_profile" v-on:click="changeView('user_profile')">My Profile</a>
     </span>
     <span v-if="currentView==='user_profile'">
-      <a class="UserProfile" v-on:click="changeView()">Feed</a>
+      <a class="user_profile" v-on:click="changeView('feed')">Feed</a>
     </span>
   </div>
 </template>
@@ -19,16 +19,20 @@ export default {
 };
 </script>
 <style scoped>
-.Navbar {
+.navbar {
   background-color: rgb(0, 170, 239);
   color: white;
 }
 
-.UserProfile {
+.touitter_title {
+  margin: 0 auto;
+}
+
+.user_profile {
   margin-left: 75%;
 }
 
-.UserProfile:hover {
+.user_profile:hover {
   cursor: pointer;
 }
 </style>
