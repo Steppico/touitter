@@ -17,7 +17,7 @@ yarn serve
 
 ## How to start
 
-The page will load at http://localhost:3001.
+The page will load at http://localhost:8081.
 
 ### NB It will work only if running the backend at the same time.
 

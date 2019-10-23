@@ -23,18 +23,19 @@ export default {
       }
     };
   },
-  props: ["loginData"],
+  props: ["session"],
   methods: {
     sharePost: function() {
       if (this.input.text.length <= 0) return alert("Write something");
       this.$apollo.mutate({
         mutation: SHARE_POST,
         variables: {
-          id: this.loginData.id,
+          id: this.session.id,
           message: this.input.text
         }
       });
       this.input.text = "";
+      location.reload();
     }
   }
 };

@@ -34,9 +34,7 @@ export default {
       signup: true,
       loggedin: false,
       loginData: {
-        id: "",
-        username: "",
-        bio: "",
+        email: "",
         followers: []
       }
     };
@@ -54,10 +52,8 @@ export default {
     loggingIn: function() {
       this.loggedin = true;
     },
-    updateLoginData(id, username, bio) {
-      this.loginData.id = id;
-      this.loginData.username = username;
-      this.loginData.bio = bio;
+    updateLoginData() {
+      this.loginData.email = localStorage.getItem("email");
     }
   }
 };

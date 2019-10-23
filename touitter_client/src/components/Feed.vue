@@ -6,14 +6,14 @@
     <MainBoard
       v-if="currentView==='feed'"
       v-bind:updateFollowers="this.updateFollowers"
-      v-bind:loginData="this.loginData"
+      v-bind:session="this.session"
       v-bind:changeView="changeView"
       v-bind:goToUser="goToUser"
     />
     <UserProfile
       v-if="currentView==='user_profile'"
-      v-bind:loginData="this.loginData"
-      v-bind:updateLoginData="updateLoginData"
+      v-bind:session="this.session"
+      v-bind:updateSession="updateSession"
     />
   </div>
 </template>
@@ -23,6 +23,7 @@ import MainBoard from "./MainBoard";
 import UserProfile from "./UserProfile";
 import OtherUser from "./OtherUser";
 // import MyFollowed from "./MyFollowed";
+import { USER_LOGIN } from "../constants/graphql";
 
 export default {
   name: "feed",
@@ -30,7 +31,13 @@ export default {
     return {
       currentView: "feed",
       otherUser: null,
-      followers: null
+      followers: null,
+      session: {
+        email: this.loginData.email,
+        id: "",
+        username: "",
+        bio: ""
+      }
     };
   },
   components: {
@@ -42,6 +49,21 @@ export default {
   },
   props: ["loginData", "updateLoginData"],
   methods: {
+    fetchUserInfo: function() {
+      this.$apollo
+        .query({
+          query: USER_LOGIN,
+          variables: {
+            email: this.session.email
+          }
+        })
+        .then(result => {
+          this.session.id = result.data.userLogin.id;
+          this.session.username = result.data.userLogin.username;
+          this.session.bio = result.data.userLogin.bio;
+        });
+    },
+
     updateFollowers: function(followers) {
       this.followers = followers;
     },
@@ -52,7 +74,15 @@ export default {
     },
     changeView: function(view) {
       this.currentView = view;
+    },
+    updateSession(id, username, bio) {
+      this.session.id = id;
+      this.session.username = username;
+      this.session.bio = bio;
     }
+  },
+  mounted() {
+    this.fetchUserInfo();
   }
 };
 </script>

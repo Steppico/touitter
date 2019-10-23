@@ -35,9 +35,9 @@ export default {
   name: "userProfile",
   data() {
     return {
-      id: this.loginData.id,
-      username: this.loginData.username,
-      bio: this.loginData.bio,
+      id: this.session.id,
+      username: this.session.username,
+      bio: this.session.bio,
       modifyPass: false,
       input: {
         firstPass: "",
@@ -46,7 +46,7 @@ export default {
       }
     };
   },
-  props: ["loginData", "updateLoginData"],
+  props: ["session", "updateSession"],
   methods: {
     showBio: function() {
       this.$modal.show("modal-bio");
@@ -59,11 +59,12 @@ export default {
         .mutate({
           mutation: UPDATE_BIO,
           variables: {
-            id: this.loginData.id,
+            id: this.session.id,
             bio: this.input.bio
           }
         })
-        .then(this.updateLoginData(this.id, this.username, this.input.bio));
+        .then(this.updateSession(this.id, this.username, this.input.bio));
+      this.$modal.hide("modal-bio");
     },
     updatePassword: function() {
       if (
@@ -77,12 +78,13 @@ export default {
           .mutate({
             mutation: UPDATE_PASSWORD,
             variables: {
-              id: this.loginData.id,
+              id: this.session.id,
               password: this.input.firstPass
             }
           })
           .then(alert("Password updated successfully"))
           .then(this.passView());
+        this.$modal.hide("modal-password");
       }
     },
     changeUserName: function() {
@@ -97,11 +99,11 @@ export default {
             .mutate({
               mutation: UPDATE_USERNAME,
               variables: {
-                id: this.loginData.id,
+                id: this.session.id,
                 username: newUserName
               }
             })
-            .then(this.updateLoginData(this.id, this.username, this.bio));
+            .then(this.updateSession(this.id, this.username, this.bio));
         }
       } else {
         alert("Please choose a longer username");

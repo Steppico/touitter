@@ -1,8 +1,8 @@
 <template>
   <div class="main-board">
-    <UserPost v-bind:loginData="this.loginData" />
+    <UserPost v-bind:session="this.session" />
     <Messages
-      v-bind:loginData="this.loginData"
+      v-bind:session="this.session"
       v-bind:changeView="changeView"
       v-bind:goToUser="goToUser"
       v-bind:updateFollowers="updateFollowers"
@@ -18,7 +18,7 @@ export default {
   data() {
     return {};
   },
-  props: ["loginData", "changeView", "goToUser", "updateFollowers"],
+  props: ["session", "changeView", "goToUser", "updateFollowers"],
   components: {
     UserPost,
     Messages

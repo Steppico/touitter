@@ -17,7 +17,7 @@
         <div class="card_message">
           <div class="card_text">{{message.message}}</div>
         </div>
-        <div v-if="message.postedBy.id !== loginData.id" class="following">
+        <div v-if="message.postedBy.id !== session.id" class="following">
           <a class="follow" v-on:click="followUser(message.postedBy.id)">Follow</a>
           <a class="unfollow" v-on:click="unfollowUser(message.postedBy.id)">Unfollow</a>
         </div>
@@ -43,7 +43,7 @@ export default {
       avatar: userAvatar
     };
   },
-  props: ["changeView", "goToUser", "loginData", "updateFollowers"],
+  props: ["changeView", "goToUser", "session", "updateFollowers"],
   methods: {
     unfollowUser(followerId) {
       if (!this.followers.includes(followerId))
@@ -52,7 +52,7 @@ export default {
         .mutate({
           mutation: UNFOLLOW_USER,
           variables: {
-            userId: this.loginData.id,
+            userId: this.session.id,
             followerId: Number(followerId)
           }
         })
@@ -70,7 +70,7 @@ export default {
         .mutate({
           mutation: FOLLOW_USER,
           variables: {
-            userId: this.loginData.id,
+            userId: this.session.id,
             followerId: Number(followerId)
           }
         })
@@ -96,7 +96,7 @@ export default {
         .query({
           query: GET_USER_FOLLOWERS,
           variables: {
-            userId: this.loginData.id
+            userId: this.session.id
           }
         })
         .then(

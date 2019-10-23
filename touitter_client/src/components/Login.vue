@@ -41,11 +41,14 @@ export default {
             .then(result => {
               if (result.data.signInUser !== null) {
                 if (result.data.signInUser.user.emailConfirmed === true) {
+                  localStorage.setItem(
+                    "username",
+                    result.data.signInUser.user.username
+                  );
+                  localStorage.setItem("email", this.input.email);
+                  localStorage.setItem("password", this.input.password);
                   alert("welcome!");
-                  const user = result.data.signInUser.user.username;
-                  const id = result.data.signInUser.user.id;
-                  const bio = result.data.signInUser.user.bio;
-                  this.updateLoginData(id, user, bio);
+                  this.updateLoginData();
                   this.loggingIn();
                 } else {
                   alert("Please confirm your email first");
@@ -59,6 +62,12 @@ export default {
           alert(`Error while logging in ${e}`);
         }
       }
+    }
+  },
+  mounted() {
+    if (localStorage.getItem("email") && localStorage.getItem("password")) {
+      this.updateLoginData();
+      this.loggingIn();
     }
   }
 };

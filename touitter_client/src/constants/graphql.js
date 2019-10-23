@@ -75,6 +75,17 @@ export const GET_ALL_MESSAGES = gql`
     }
   }
 `;
+
+export const USER_LOGIN = gql`
+query UserLogin($email: String!) {
+  userLogin(email: $email) {
+    id
+    username
+    bio
+  }
+}`
+
+
 export const CHECK_TOKEN = gql`
   query CheckToken($token: String!) {
     checkToken(token: $token) {
